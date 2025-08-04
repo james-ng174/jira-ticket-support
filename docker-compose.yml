@@ -1,0 +1,65 @@
+version: '3.4'
+
+services:
+  django:
+    container_name: django
+    build:
+      context: ./django
+      dockerfile: ./Dockerfile
+    ports:
+      - 8000:8000
+    stdin_open: true   
+    tty: true   
+    volumes:
+     - ./output:/output
+     - ./django:/home/app/webapp  
+    environment:
+      - DOCKER_RUNNING=true
+    env_file:
+      - ./config/config.ini 
+    depends_on: 
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: wget --no-verbose -O /dev/null --tries=1 http://localhost:8000/api/health-check || exit 1
+      interval: 10s
+      timeout: 5s 
+
+  mesop-app:
+    container_name: mesop
+    build:
+      context: ./mesop
+      dockerfile: ./Dockerfile
+    volumes:
+     - ./mesop/src:/srv/mesop-app/src
+    ports:
+      - 8080:8080
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DOCKER_RUNNING=true
+    depends_on: 
+      django:
+        condition: service_healthy
+    env_file:
+      - ./config/config.ini 
+
+  db:
+    hostname: db
+    image: pgvector/pgvector:pg15
+    ports:
+     - 5432:5432
+    environment:
+      POSTGRES_DB: vectordb
+      POSTGRES_USER: testuser
+      POSTGRES_PASSWORD: testpwd
+      PGUSER: testuser
+      POSTGRES_HOST_AUTH_METHOD: trust
+      PGDATA: /var/lib/postgresql/data/
+    volumes:
+      - ./pgvector/output/database:/var/lib/postgresql/data
+      - ./pgvector/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d vectordb -U testuser"]
+      interval: 10s
+      timeout: 5s
+      retries: 5

@@ -1,0 +1,4 @@
+mesop==0.12.9
+gunicorn==23.0.0
+requests==2.32.3
+debugpy==1.8.8

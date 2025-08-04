@@ -1,0 +1,30 @@
+{
+    "examples_product": [
+        {
+            "input": "<description>Add Jira integration ticket creation Add a Jira creation widget to the front end of the website<description>",
+            "output": "<user_stories>As a user, I want to be able to create a Jira ticket directly from the website.\nAs a product owner, I want to streamline the process of creating Jira tickets for our team.<user_stories>\n<acceptance_criteria>The Jira creation widget should be easily accessible on the front end of the website.\nThe widget should allow users to input all necessary information for a Jira ticket, such as title, description, and assignee.\nOnce submitted, the widget should create a new Jira ticket in the designated project.\nThe widget should have proper error handling in case of any issues with creating the ticket.<acceptance_criteria>\n<priority>MEDIUM<priority>\n<thought>By adding a Jira integration and creation widget to the website, we can improve the efficiency and accuracy of creating Jira tickets for our team. This will ultimately save time and resources for both the business and the development team. Though there is no immediate need for this to be completed. Therefore, I believe this ticket should be prioritized as MEDIUM.<thought>"
+        },
+        {
+            "input": "<description>Urgent schema update We need to add a column for model requests and responses for compliance<description>",
+            "output": "<user_stories>As a developer, I want to be able to view and track model requests and responses for compliance purposes.\nAs a product owner, I want to ensure our system is compliant with regulations and standards.<user_stories>\n<acceptance_criteria>A new column should be added to the schema for model requests and responses.\nThe column should accurately track and store all relevant information for compliance purposes.\nThe column should be easily accessible and viewable for authorized users.\nThe update should not disrupt any existing functionality of the system.<acceptance_criteria>\n<priority>HIGH<priority>\n<thought>This ticket is marked as urgent, indicating that it is a high priority for the business. Compliance is a critical aspect of our business and it is important that we address this issue as soon as possible. By adding a new column for model requests and responses, we can ensure that our system is compliant and avoid any potential legal or regulatory issues. Therefore, I believe this ticket should be prioritized as HIGH.<thought>"
+        },
+        {
+            "input": "<description>Homepage CSS error There is a CSS error for the homepage which is affecting a call to action button and negatively impacting conversion<description>",
+            "output": "<user_stories>As a user, I want the CSS error on the homepage to be fixed so that I can easily access the call to action button.\nAs a product owner, I want to improve the conversion rate of our website by fixing any CSS errors.<user_stories>\n<acceptance_criteria>The CSS error should be identified and fixed on the homepage.\nThe call to action button should be easily visible and accessible for users.\nThe fix should not affect any other functionality of the website.<acceptance_criteria>\n<priority>HIGH<priority>\n<thought>This CSS error is directly impacting the conversion rate of our website, which is a key metric for our business. It is important that we address this issue as soon as possible to improve the user experience and ultimately increase conversions. Therefore, I believe this ticket should be prioritized as HIGH.<thought>"
+        }
+    ],
+    "examples_linking": [
+        {
+            "input": "<issue1>Add Jira integration ticket creation Add a Jira creation widget to the front end of the website<issue1><issue2>Add a widget to the front end to create a Jira Add an integration to the front end to allow users to generated Jira tickets manually<issue2>",
+            "output": "<related>True<related><thought>Both tickets relate to a Jira creation widget, they must be duplicate tickets.<thought>"
+        },
+        {
+            "input": "<issue1>Front end spelling error There is a spelling error for the home page which should read 'Welcome to the homepage' rather than 'Wellcome to the homepage'<issue1><issue2>Latency issue there is a latency issue and the calls to the Open AI should be made asynchronous<issue2>",
+            "output": "<related>False<related><thought>The first ticket is in relation to a spelling error and the second is a latency, therefore they are not related.<thought>"
+        },
+        {
+            "input": "<issue1>Schema update We need to add a column for model requests and responses<issue1><issue2>Update schema to include both model requests and model responses Add to two new additional fields to the schema<issue2>",
+            "output": "<related>True<related><thought>Both tickets reference a schema update with two new fields for model requests and model responses, therefore they must be related.<thought>"
+        }
+    ]
+}
